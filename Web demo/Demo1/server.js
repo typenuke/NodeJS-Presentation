@@ -20,6 +20,13 @@ app.post('/', (req, res)=>{
         }
     })
 
+    const mailOptions = {
+        from: "Nodemailer Contact <nodejsmailertest00@gmail.com>",
+        to: 'bismainlearn@gmail.com',
+        subject: `Nodemailer Contact !!!`,
+        html: output
+    }
+
     const output = `
         <h2 style="color:red;">You have new contact request</h2>
         <h3>Contact Details</h3>
@@ -31,13 +38,6 @@ app.post('/', (req, res)=>{
         <h3>Message</h3>
         <p>${req.body.comments}</p>
     `
-
-    const mailOptions = {
-        from: "Nodemailer Contact <nodejsmailertest00@gmail.com>",
-        to: 'bismainlearn@gmail.com',
-        subject: `Nodemailer Contact !!!`,
-        html: output
-    }
     
     transporter.sendMail(mailOptions, (error, info)=>{
         if(error){
